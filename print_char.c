@@ -2,22 +2,18 @@
 #include <stdio.h>
 
 /**
- * print_char - writes a single character to the buffer
- * @buffer: the buffer to write the character to
- * @buf_pos: the current position in the buffer
- * @c: the character to write
- * Return: the updated buffer position
+ * print_char - writes the character c to stdout
+ * @arguments: input char
+ * @buf: buffer pointer
+ * @ibuf: index for buffer pointer
+ * Return: On success 1.
  */
-int print_char(char c, char *buffer, int *buf_pos, int *count)
+int print_char(va_list arguments, char *buf, unsigned int ibuf)
 {
-buffer[(*buf_pos)++] = c;
+char c;
 
-if (*buf_pos == BUFFER_SIZE)
-{
-write(1, buffer, BUFFER_SIZE);
-*buf_pos = 0;
-}
+c = va_arg(arguments, int);
+handl_buffer(buf, c, ibuf);
 
-(*count)++;
-return (*buf_pos);
+return (1);
 }

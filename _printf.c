@@ -8,67 +8,44 @@
 
 int _printf(const char *format, ...)
 {
-va_list args;
-int count = 0;
-char c;
-char *str;
-int n;
-char *buffer = malloc(BUFFER_SIZE);
-int buf_pos = 0;
+unsigned int i = 0, len = 0, ibuf = 0;
+va_list arguments;
+int (*function)(va_list, char *, unsigned int);
+char *buffer;
 
-va_start(args, format);
-
-if (!format || (format[0] == '%' && !format[1]))
+va_start(arguments, format), buffer = malloc(sizeof(char) * BUFFER_SIZE);
+if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
 return (-1);
-
-if (!format[0])
+if (!format[i])
 return (0);
-
-while (*format)
+for (i = 0; format && format[i]; i++)
 {
-if (*format == '%')
+if (format[i] == '%')
 {
-format++;
-
-switch (*format)
-{
-case 'c':
-c = (char)va_arg(args, int);
-buf_pos = print_char(c, buffer, &buf_pos, &count);
-break;
-
-case 's':
-str = va_arg(args, char *);
-buf_pos = print_str(str, buffer, &buf_pos, &count);
-break;
-
-case 'd':
-case 'i':
-n = va_arg(args, int);
-buf_pos = print_int(n, buffer, &buf_pos, &count);
-break;
-
-case '%':
-buf_pos = print_char('%', buffer, &buf_pos, &count);
-break;
-default:
-break;
+if (format[i + 1] == '\0')
+{	print_buffer(buffer, ibuf), free(buffer), va_end(arguments);
+return (-1);
 }
+else
+{	function = get_printf(format, i + 1);
+if (function == NULL)
+{
+if (format[i + 1] == ' ' && !format[i + 2])
+return (-1);
+handl_buffer(buffer, format[i], ibuf), len++, i--;
 }
-
 else
 {
-buf_pos = print_char(*format, buffer, &buf_pos, &count);
+len += function(arguments, buffer, ibuf);
+i += ev_printf(format, i + 1);
 }
-
-format++;
+} i++;
 }
-
-if (buf_pos > 0)
-write(1, buffer, buf_pos);
-
-free(buffer);
-va_end(args);
-
-return (count);
+else
+handl_buffer(buffer, format[i], ibuf), len++;
+for (ibuf = len; ibuf > BUFFER_SIZE; ibuf -= BUFFER_SIZE)
+;
+}
+print_buffer(buffer, ibuf), free(buffer), va_end(arguments);
+return (len);
 }

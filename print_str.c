@@ -1,25 +1,26 @@
 #include "main.h"
 
 /**
- * print_str - writes a string to the buffer
- * @buffer: the buffer to write the string to
- * @buf_pos: the current position in the buffer
- * @str: the string to write
- * Return: the updated buffer position
+ * print_str - writes the string to stdout
+ * @arguments: input string
+ * @buf: buffer pointer
+ * @ibuf: index for buffer pointer
+ * Return: On success 1.
  */
-int print_str(char *str, char *buffer, int *buf_pos, int *count)
+int print_str(va_list arguments, char *buf, unsigned int ibuf)
 {
-int i;
-for (i = 0; str[i]; i++)
-{
-buffer[(*buf_pos)++] = str[i];
-if (*buf_pos == BUFFER_SIZE)
-{
-write(1, buffer, BUFFER_SIZE);
-*buf_pos = 0;
-}
-}
+char *str;
+unsigned int i;
+char nill[] = "(null)";
 
-*count += strlen(str);
-return (*buf_pos);
+str = va_arg(arguments, char *);
+if (str == NULL)
+{
+for (i = 0; nill[i]; i++)
+ibuf = handl_buffer(buf, nill[i], ibuf);
+return (6);
+}
+for (i = 0; str[i]; i++)
+ibuf = handl_buffer(buf, str[i], ibuf);
+return (i);
 }
