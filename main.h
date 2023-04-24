@@ -29,5 +29,6 @@ int ev_printf(const char *s, int index);
 unsigned int handl_buffer(char *buf, char c, unsigned int ibuf);
 int print_buffer(char *buf, unsigned int nbuf);
 int (*get_printf(const char *s, int index))(va_list, char *, unsigned int);
+int print_percent(va_list arguments, char *buf, unsigned int ibuf);
 
 #endif
