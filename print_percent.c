@@ -5,7 +5,9 @@
  * @arguments: variable argument list
  * @ibuf:  store a single % character
  * @buf: a buffer
+ * Return: 1
  */
+
 int print_percent(va_list arguments, char *buf, unsigned int ibuf)
 {
 (void)arguments;
