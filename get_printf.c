@@ -10,7 +10,7 @@ int (*get_printf(const char *s, int index))(va_list, char *, unsigned int)
 print_t pr[] = {
 {"c", print_char}, {"s", print_str},
 {"i", print_int}, {"d", print_int},
-{NULL, NULL},
+{"%", print_percent}, {NULL, NULL},
 };
 int i = 0, j = 0, first_index;
 
