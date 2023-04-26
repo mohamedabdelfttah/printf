@@ -9,9 +9,12 @@ int ev_printf(const char *s, int index)
 {
 print_t pr[] = {
 {"c", print_char}, {"s", print_str},
-{"i", print_int}, {"d", print_int},
-{"%", print_percent}, {"b", print_binary},
+{"i", print_int},{"d", print_int},
+{"%", print_percent}, {"u", print_unit},
+{"b", print_binary}, {"o", print_octal},
+{"x", print_hexa}, {"X", print_upX},
 {NULL, NULL},
+
 };
 int i = 0, j = 0, first_index;
 
