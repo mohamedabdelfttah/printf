@@ -7,9 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NULL_STRING "(null)"
-#define NUL '\0'
-
 /**
  * struct print - struct for printer functions
  * @type_arg: identifier
@@ -41,6 +38,4 @@ int print_octal(va_list arguments, char *buf, unsigned int ibuf);
 int print_hexa(va_list arguments, char *buf, unsigned int ibuf);
 int print_upX(va_list arguments, char *buf, unsigned int ibuf);
 int print_unit(va_list arguments, char *buf, unsigned int ibuf);
-int print_rev(va_list arguments, char *buf, unsigned int ibuf);
-int print_rot13(va_list arguments, char *buf, unsigned int ibuf);
 #endif
