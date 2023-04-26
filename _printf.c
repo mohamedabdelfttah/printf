@@ -12,6 +12,25 @@ va_list arguments;
 int (*function)(va_list, char *, unsigned int);
 char *buffer;
 
+int printed_chars;
+	conver_t f_list[] = {
+		{"%", print_percent},
+		{"d", print_integer},
+		{"i", print_integer},
+		{"c", print_char},
+		{"s", print_string},
+		{"b", print_binary},
+		{"u", print_unsigned_integer},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_HEX},
+		{"S", print_String},
+		{"p", print_pointer},
+		{"r", print_rev},
+		{"R", print_rot13},
+		{NULL, NULL},
+	};
+
 va_start(arguments, format), buffer = malloc(sizeof(char) * 1024);
 if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
 return (-1);
