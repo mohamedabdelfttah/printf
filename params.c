@@ -1,4 +1,4 @@
-#include "header.h"
+#include "main.h"
 
 /**
  * init_params - clears struct fields and reset buf
