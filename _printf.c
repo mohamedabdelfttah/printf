@@ -1,5 +1,4 @@
 #include "main.h"
-#include "header.h"
 /**
  * _printf - formatted output conversion and print data.
  * @format: input string.
@@ -47,31 +46,5 @@ for (ibuf = len; ibuf > 1024; ibuf -= 1024)
 ;
 }
 print_buffer(buffer, ibuf), free(buffer), va_end(arguments);
-
-for (p = (char *)format; *p; p++)
-	{
-		init_params(&params, ap);
-		if (*p != '%')
-		{
-			sum += _putchar(*p);
-			continue;
-		}
-		start = p;
-		p++;
-		while (get_flag(p, &params)) /* while char at p is flag char */
-		{
-			p++; /* next char */
-		}
-		p = get_width(p, &params, ap);
-		p = get_precision(p, &params, ap);
-		if (get_modifier(p, &params))
-			p++;
-		if (!get_specifier(p))
-			sum += print_from_to(start, p,
-				params.l_modifier || params.h_modifier ? p - 1 : 0);
-		else
-			sum += get_print_func(p, ap, &params);
-	}
-
 return (len);
 }
