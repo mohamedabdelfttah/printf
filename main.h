@@ -7,43 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define PARAMS_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-
-/**
- * struct parameters - parameters struct
- *
- * @unsign: flag if unsigned value
- *
- * @plus_flag: on if plus_flag specified
- * @space_flag: on if hashtag_flag specified
- * @hashtag_flag: on if _flag specified
- * @zero_flag: on if _flag specified
- * @minus_flag: on if _flag specified
- *
- * @width: field width specified
- * @precision: field precision specified
- *
- * @h_modifier: on if h_modifier is specified
- * @l_modifier: on if l_modifier is specified
- *
- */
-typedef struct parameters
-{
-	unsigned int unsign			: 1;
-
-	unsigned int plus_flag		: 1;
-	unsigned int space_flag		: 1;
-	unsigned int hashtag_flag	: 1;
-	unsigned int zero_flag		: 1;
-	unsigned int minus_flag		: 1;
-
-	unsigned int width;
-	unsigned int precision;
-
-	unsigned int h_modifier		: 1;
-	unsigned int l_modifier		: 1;
-} params_t;
-
+#define NULL_STRING "(null)"
+#define NUL '\0'
 
 /**
  * struct print - struct for printer functions
@@ -76,6 +41,6 @@ int print_octal(va_list arguments, char *buf, unsigned int ibuf);
 int print_hexa(va_list arguments, char *buf, unsigned int ibuf);
 int print_upX(va_list arguments, char *buf, unsigned int ibuf);
 int print_unit(va_list arguments, char *buf, unsigned int ibuf);
-int print_rev(va_list arguments, params_t *params);
-int print_rot13(va_list arguments, params_t *params);
+int print_rev(va_list arguments, char *buf, unsigned int ibuf);
+int print_rot13(va_list arguments, char *buf, unsigned int ibuf);
 #endif
