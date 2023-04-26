@@ -31,4 +31,11 @@ int print_buffer(char *buf, unsigned int nbuf);
 int (*get_printf(const char *s, int index))(va_list, char *, unsigned int);
 int print_percent(va_list arguments, char *buf, unsigned int ibuf);
 int print_binary(va_list arguments, char *buf, unsigned int ibuf);
+char *binary_array(char *binary, long int int_in, int isneg, int limit);
+char *hexa_array(char *bnr, char *hex, int isupp, int limit);
+char *octal_array(char *bnr, char *oct);
+int print_octal(va_list arguments, char *buf, unsigned int ibuf);
+int print_hexa(va_list arguments, char *buf, unsigned int ibuf);
+int print_upX(va_list arguments, char *buf, unsigned int ibuf);
+int print_unit(va_list arguments, char *buf, unsigned int ibuf);
 #endif
